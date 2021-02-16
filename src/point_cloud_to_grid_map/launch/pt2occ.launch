@@ -1,0 +1,19 @@
+<?xml version="1.0"?> 
+<launch>
+    <arg name="rviz" default="true" />
+
+    <node pkg="point_cloud_to_grid_map" type="point_cloud_to_grid_map" name="point_cloud_to_grid_map" output="screen">
+        <param name="m_sub_point_cloud" value="/points_no_ground"/>
+        <param name="map_xMax" value="50.0"/>
+        <param name="map_xMin" value="-50.0"/>
+        <param name="map_yMax" value="50.0"/>
+        <param name="map_yMin" value="-50.0"/>
+        <param name="map_resolution" value="0.3"/>
+        <param name="safe_radius" value="0.2"/>
+    </node>
+
+    <group if="$(arg rviz)">
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(find point_cloud_to_grid_map)/config/config.rviz" />
+    </group>
+
+</launch>
